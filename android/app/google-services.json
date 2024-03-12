@@ -1,0 +1,92 @@
+{
+  "project_info": {
+    "project_number": "985115760380",
+    "project_id": "internship-2f276",
+    "storage_bucket": "internship-2f276.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:985115760380:android:5f84a7f10ff84ade84a979",
+        "android_client_info": {
+          "package_name": "com.example.fruitsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "985115760380-68c38lc99mvc2802dgtd74d5t8qqrl5n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fruitsapp",
+            "certificate_hash": "2afd9e4880904bcc03db98531a827c92931ad27d"
+          }
+        },
+        {
+          "client_id": "985115760380-or8vg00m2aci2cufnsvps79mppdtr5so.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrGbJUrxPFjTdveBy13VD7xZ7XSEJX7Eo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "985115760380-or8vg00m2aci2cufnsvps79mppdtr5so.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:985115760380:android:e424d85595d3aa4884a979",
+        "android_client_info": {
+          "package_name": "com.example.internshipapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "985115760380-17chae8ldgkuvvikjqja7hdhq7a2oftv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.internshipapp",
+            "certificate_hash": "ef4db2bad1e96b60872558b2d7098fe27a44b713"
+          }
+        },
+        {
+          "client_id": "985115760380-19avqtuijnbt7ahko4sn6g2u4gckqa93.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.internshipapp",
+            "certificate_hash": "92e5b67397d0d99dcc46fcb983e76bef3dc97b54"
+          }
+        },
+        {
+          "client_id": "985115760380-or8vg00m2aci2cufnsvps79mppdtr5so.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrGbJUrxPFjTdveBy13VD7xZ7XSEJX7Eo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "985115760380-or8vg00m2aci2cufnsvps79mppdtr5so.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
