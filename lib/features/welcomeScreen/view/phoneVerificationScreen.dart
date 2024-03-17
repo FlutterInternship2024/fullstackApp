@@ -7,9 +7,9 @@ import '../../../constants/sizes.dart';
 import '../../../constants/text_strings.dart';
 import '../widgets/tvalidator.dart';
 
-class SignupScreen extends StatelessWidget {
-  static const routeName = '/signup';
-  const SignupScreen({Key? key}) : super(key: key);
+class PhoneVerificationScreen extends StatelessWidget {
+  static const routeName = '/phoneScreen';
+  const PhoneVerificationScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class SignupScreen extends StatelessWidget {
             ),
 
             //Form
-            SignupForm(),
+            PhoneForm(),
           ],
         ),
       ),
@@ -38,22 +38,20 @@ class SignupScreen extends StatelessWidget {
   }
 }
 
-class SignupForm extends StatefulWidget {
-  const SignupForm({
+class PhoneForm extends StatefulWidget {
+  const PhoneForm({
     super.key,
   });
 
   @override
-  State<SignupForm> createState() => _SignupFormState();
+  State<PhoneForm> createState() => _PhoneFormState();
 }
 
-class _SignupFormState extends State<SignupForm> {
+class _PhoneFormState extends State<PhoneForm> {
   final signupFormKey = GlobalKey<FormState>();
   final TextEditingController _firstnameController = TextEditingController();
   final TextEditingController _lastnameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
   bool _hidePassword = false;
 
   @override
@@ -96,17 +94,7 @@ class _SignupFormState extends State<SignupForm> {
             ),
 
             //UserName
-            const SizedBox(
-              height: TSizes.spaceBtwInputFields,
-            ),
 
-            // Email
-            TextFormField(
-                controller: _emailController,
-                expands: false,
-                decoration: const InputDecoration(
-                    labelText: TTexts.email, prefixIcon: Icon(Iconsax.direct)),
-                validator: (value) => TValidator.validateEmail(value)),
             const SizedBox(
               height: TSizes.spaceBtwInputFields,
             ),
@@ -118,26 +106,6 @@ class _SignupFormState extends State<SignupForm> {
               decoration: const InputDecoration(
                   labelText: TTexts.phoneNo, prefixIcon: Icon(Iconsax.call)),
               validator: (value) => TValidator.validatePhoneNumber(value),
-            ),
-            const SizedBox(
-              height: TSizes.spaceBtwInputFields,
-            ),
-
-            // Password
-            TextFormField(
-              controller: _passwordController,
-              expands: false,
-              obscureText: _hidePassword,
-              decoration: InputDecoration(
-                  labelText: TTexts.password,
-                  prefixIcon: const Icon(Iconsax.password_check),
-                  suffixIcon: IconButton(
-                    onPressed: () => setState(() {
-                      _hidePassword = !_hidePassword;
-                    }),
-                    icon: Icon(_hidePassword ? Iconsax.eye_slash : Iconsax.eye),
-                  )),
-              validator: (value) => TValidator.validatePassword(value),
             ),
 
             const SizedBox(
@@ -154,7 +122,7 @@ class _SignupFormState extends State<SignupForm> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (signupFormKey.currentState!.validate()) {
-                      _signUpUser();
+                      _createUserWithPhone();
                     }
                   },
                   child: Text(
@@ -166,13 +134,12 @@ class _SignupFormState extends State<SignupForm> {
         ));
   }
 
-  void _signUpUser() async {
-    await AuthServices().createUserWithEmailPassword(
+  Future<void> _createUserWithPhone() async {
+    setState(() {});
+    await AuthServices().getPhoneNumber(
         context: context,
+        phoneNumber: '+91' + _phoneController.text.trim(),
         firstName: _firstnameController.text.trim(),
-        lastName: _lastnameController.text.trim(),
-        email: _emailController.text.trim(),
-        phoneNumber: _phoneController.text.trim(),
-        password: _passwordController.text.trim());
+        lastName: _lastnameController.text.trim());
   }
 }

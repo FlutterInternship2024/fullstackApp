@@ -7,6 +7,7 @@ class ModelUser {
   final String phoneNumber;
   final String profilePicture;
   final String uid;
+  final String userType;
 
   ModelUser(
       {required this.firstName,
@@ -14,6 +15,7 @@ class ModelUser {
       required this.uid,
       required this.email,
       required this.phoneNumber,
+      this.userType = 'user',
       required this.profilePicture});
 
   Map<String, dynamic> toJson() => {
@@ -29,7 +31,8 @@ class ModelUser {
     var snapshot = snap.data() as Map<String, dynamic>;
 
     return ModelUser(
-      email: snapshot['email'],
+      userType: snapshot['userType'],
+      email: snapshot['email'] ?? '',
       firstName: snapshot['firstName'] ?? '',
       uid: snapshot['uid'],
       lastName: snapshot['lastName'] ?? '',

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:fruitsapp/features/homeScreen/view/homeMainScreen.dart';
 import 'package:fruitsapp/features/welcomeScreen/controller/auth_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../constants/colors.dart';
 import '../../../constants/sizes.dart';
 import '../../../constants/text_strings.dart';
 import '../widgets/tvalidator.dart';
@@ -56,6 +56,7 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false;
   final loginFormKey = GlobalKey<FormState>();
   bool _hidePassword = false;
   @override
@@ -104,29 +105,45 @@ class _LoginFormState extends State<LoginForm> {
 
               //Sign Up Button
 
-              SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (loginFormKey.currentState!.validate()) {
-                        _loginUser();
-                      }
-                    },
-                    child: Text(
-                      TTexts.signIn,
-                      style:
-                          GoogleFonts.getFont('Poppins', color: Colors.white),
-                    ),
-                  ))
+              (_isLoading)
+                  ? Container(
+                      padding: EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                          color: TColors.primary,
+                          borderRadius: BorderRadius.circular(12)),
+                      child: Center(
+                          child: const CircularProgressIndicator(
+                              color: TColors.textWhite)),
+                    )
+                  : SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (loginFormKey.currentState!.validate()) {
+                            _loginUser();
+                          }
+                        },
+                        child: Text(
+                          TTexts.signIn,
+                          style: GoogleFonts.getFont('Poppins',
+                              color: Colors.white),
+                        ),
+                      ))
             ],
           )),
     );
   }
 
   void _loginUser() async {
+    setState(() {
+      _isLoading = true;
+    });
     await AuthServices().loginUser(
         email: _emailController.text.trim(),
-        password: _passwordController.text.trim());
-    Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+        password: _passwordController.text.trim(),
+        context: context);
+    setState(() {
+      _isLoading = false;
+    });
   }
 }

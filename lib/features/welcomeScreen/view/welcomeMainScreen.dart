@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fruitsapp/features/homeScreen/view/homeMainScreen.dart';
-import 'package:fruitsapp/features/welcomeScreen/controller/auth_controller.dart';
 import 'package:fruitsapp/features/welcomeScreen/view/loginScreen.dart';
+import 'package:fruitsapp/features/welcomeScreen/view/phoneVerificationScreen.dart';
 import 'package:fruitsapp/features/welcomeScreen/view/siginScreen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -13,18 +12,14 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-  void _handleGoogleSignIn() async {
-    await AuthServices().handleGoogleSignIn(context: context);
-    if (mounted) {
-      Navigator.pushReplacementNamed(context, HomeScreen.routeName);
-    }
-  }
+  String res = '';
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: Container(
+          color: Color(0xffF5F5F5),
           height: double.infinity,
           child: Stack(
             children: [
@@ -32,8 +27,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 height: 480,
                 width: MediaQuery.of(context).size.width,
                 child: Image.asset(
-                  'assets/images/welcomeimage.jpg',
-                  fit: BoxFit.fitWidth,
+                  'assets/images/welcome.jpg',
+                  fit: BoxFit.fill,
                 ),
               ),
               Positioned(
@@ -74,48 +69,47 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           ),
                           child: ListTile(
                             onTap: () {
-                              _handleGoogleSignIn();
+                              Navigator.pushNamed(
+                                  context, PhoneVerificationScreen.routeName);
                             },
                             title: Padding(
                               padding: const EdgeInsets.only(right: 38.0),
                               child: Text(
-                                'Continue with Google',
+                                'Create account via Phone',
                                 style: GoogleFonts.getFont('Poppins',
                                     fontSize: 18),
                                 textAlign: TextAlign.center,
                               ),
                             ),
                             leading: Image.asset(
-                              'assets/images/google.png',
-                              height: 20,
+                              'assets/images/phonecall.png',
+                              height: 25,
                             ),
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, SignupScreen.routeName);
-                          },
-                          child: Container(
-                            height: 53,
-                            width: double.infinity,
-                            padding: const EdgeInsets.all(12),
-                            margin: const EdgeInsets.symmetric(vertical: 10),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                gradient: const LinearGradient(colors: [
-                                  Color(0xffAEDC81),
-                                  Color(0xff98D260),
-                                  Color(0xff89D043),
-                                  Color(0xff6CC51D),
-                                ])),
-                            child: Text(
-                              'Create an account',
-                              style: GoogleFonts.getFont('Poppins',
-                                  fontSize: 18,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.center,
+                        Container(
+                          margin: const EdgeInsets.only(top: 15, bottom: 2),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.lightGreen,
+                          ),
+                          child: ListTile(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, SignupScreen.routeName);
+                            },
+                            title: Padding(
+                              padding: const EdgeInsets.only(right: 38.0),
+                              child: Text(
+                                'Create account via Email',
+                                style: GoogleFonts.getFont('Poppins',
+                                    color: Colors.white, fontSize: 18),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            leading: Image.asset(
+                              'assets/images/email.png',
+                              height: 25,
                             ),
                           ),
                         ),

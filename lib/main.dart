@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:fruitsapp/features/homeScreen/view/homeMainScreen.dart';
+import 'package:fruitsapp/features/welcomeScreen/view/verifyEmailPage.dart';
 import 'package:fruitsapp/routes.dart';
 import 'package:fruitsapp/theme/theme.dart';
 
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
             if (snapshot.hasData) {
-              return HomeScreen();
+              return VerifyEmailPage();
             } else if (snapshot.hasError) {
               return Scaffold(
                 body: Center(
