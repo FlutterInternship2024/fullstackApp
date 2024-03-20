@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruitsapp/admin/features/adminHomeScreen.dart';
 import 'package:fruitsapp/features/homeScreen/view/categoryList.dart';
 import 'package:fruitsapp/features/homeScreen/view/categoryPage.dart';
 import 'package:fruitsapp/features/homeScreen/view/homeMainScreen.dart';
@@ -61,6 +62,12 @@ Route getRoutes({required RouteSettings routeSettings}) {
             return CategoryDetailPage(
               currentCategory: currentCategory,
             );
+          });
+    case AdminHomePage.routeName:
+      return MaterialPageRoute(
+          settings: routeSettings,
+          builder: (context) {
+            return AdminHomePage();
           });
     default:
       return MaterialPageRoute(builder: (context) {

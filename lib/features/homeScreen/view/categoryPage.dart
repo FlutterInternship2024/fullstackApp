@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruitsapp/features/homeScreen/view/widgets/categories.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CategoryDetailPage extends StatefulWidget {
   static const routeName = '/categorydetail';
@@ -32,7 +33,14 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
     Colors.amber[200]!, // Dried Fruits
     Colors.purpleAccent[100]!, // Gift Baskets
   ];
-
+  List<String> fruitCategories = [
+    'Fresh',
+    'Organic',
+    'Seasonal',
+    'Dried',
+    'Gift',
+    'Bulk',
+  ];
   void select(int n) {
     for (int i = 0; i < 5; i++) {
       if (i == n) {
@@ -59,7 +67,11 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('Category Detail'),
+        centerTitle: true,
+        title: Text(
+          fruitCategories[widget.currentCategory],
+          style: GoogleFonts.getFont('Poppins', fontSize: 23),
+        ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () {

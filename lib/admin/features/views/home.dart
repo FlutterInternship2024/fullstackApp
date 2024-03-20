@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:fruitsapp/admin/features/widgets/BestSeller.dart';
-import 'package:fruitsapp/admin/features/widgets/Drawer.dart';
-import 'package:fruitsapp/admin/features/widgets/dashboardcard.dart';
 import 'package:iconsax/iconsax.dart';
 
-import 'add_product.dart';
+import '../widgets/BestSeller.dart';
+import '../widgets/Drawer.dart';
+import '../widgets/dashboardcard.dart';
 
-class AdminHomePage extends StatefulWidget {
-  static const routeName = '/adminHome';
-  const AdminHomePage({super.key});
+class Homepage extends StatefulWidget {
+  static const routeName = '/home';
+  const Homepage({super.key});
 
   @override
-  State<AdminHomePage> createState() => _AdminHomePageState();
+  State<Homepage> createState() => _HomepageState();
 }
 
-class _AdminHomePageState extends State<AdminHomePage> {
-  List<Widget> pages = [AddProductScreen(), Text('data')];
-  int _currentIndex = 0;
+class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,16 +30,14 @@ class _AdminHomePageState extends State<AdminHomePage> {
       drawer: CustomDrawer(),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             //basic 4 display Dashboard
             Container(
-              width: double.infinity,
               decoration: BoxDecoration(
                   color: Colors.grey[100],
                   borderRadius: BorderRadius.circular(20)),
               margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.all(25),
               child: Column(children: [
                 Padding(
                     padding: EdgeInsets.only(bottom: 10.0),
@@ -51,51 +46,43 @@ class _AdminHomePageState extends State<AdminHomePage> {
                             fontWeight: FontWeight.w900,
                             fontSize: 20,
                             color: Colors.blue[900]))),
-                Row(children: [
-                  Expanded(
-                    child: DashboardCard(
-                      containerColor: Color(0xffF7CDA2),
-                      icon: Iconsax.user_edit,
-                      headingText: "9999+",
-                      subText1: "All Members",
-                      subText2: "Since Stand",
-                      textColor: Color(0xffA34E00),
-                    ),
+                const Row(children: [
+                  DashboardCard(
+                    containerColor: Color(0xffF7CDA2),
+                    icon: Iconsax.user_edit,
+                    headingText: "9999+",
+                    subText1: "AllMemeber",
+                    subText2: "Since Stand",
+                    textColor: Color(0xffA34E00),
                   ),
-                  Expanded(
-                    child: DashboardCard(
-                      containerColor: Color(0xffB6F9B6),
-                      icon: Iconsax.user_cirlce_add,
-                      headingText: "1000+",
-                      subText1: "New Members",
-                      subText2: "From Last Month",
-                      textColor: Color(0xff007312),
-                    ),
+                  DashboardCard(
+                    containerColor: Color(0xffB6F9B6),
+                    icon: Iconsax.user_cirlce_add,
+                    headingText: "1000+",
+                    subText1: "NewMember",
+                    subText2: "From Last Month",
+                    textColor: Color(0xff007312),
                   )
                 ]),
                 SizedBox(
                   height: 10,
                 ),
                 Row(children: [
-                  Expanded(
-                    child: DashboardCard(
-                      containerColor: Color(0xffF79C96),
-                      icon: Iconsax.profile_delete,
-                      headingText: "1000+",
-                      subText1: "New Members",
-                      subText2: "From Last Month",
-                      textColor: Color(0xffCC0000),
-                    ),
+                  DashboardCard(
+                    containerColor: Color(0xffF79C96),
+                    icon: Iconsax.profile_delete,
+                    headingText: "1000+",
+                    subText1: "NewMember",
+                    subText2: "From Last Month",
+                    textColor: Color(0xffCC0000),
                   ),
-                  Expanded(
-                    child: DashboardCard(
-                      containerColor: Color(0xffABB9EE),
-                      icon: Iconsax.tag,
-                      headingText: "500+",
-                      subText1: "Sale Product",
-                      subText2: "ALL Time",
-                      textColor: Color(0xff003FB9),
-                    ),
+                  DashboardCard(
+                    containerColor: Color(0xffABB9EE),
+                    icon: Iconsax.tag,
+                    headingText: "500+",
+                    subText1: "SaleProduct",
+                    subText2: "ALL Time",
+                    textColor: Color(0xff003FB9),
                   )
                 ])
               ]),

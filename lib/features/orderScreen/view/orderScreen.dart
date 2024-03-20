@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fruitsapp/features/homeScreen/view/homeMainScreen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../models/product.dart';
@@ -90,37 +89,18 @@ class _OrderPageState extends State<OrderPage> {
         child: Column(
           children: [
             Text(
-              'Order Page',
+              'My Orders',
               style: GoogleFonts.poppins(
                   fontSize: 20,
                   color: Colors.black,
                   fontWeight: FontWeight.bold),
             ),
             Expanded(
-              child: Stack(
+              child: Column(
                 children: [
-                  ListView.builder(
-                    itemCount: orders.length,
-                    itemBuilder: (context, index) {
-                      return OrderCard(
-                        order: orders[index],
-                        onItemCountChanged: (newCount) {
-                          setState(() {
-                            orders[index].itemCount = newCount;
-                          });
-                        },
-                        onDelete: () {
-                          setState(() {
-                            orders.removeAt(index);
-                          });
-                        },
-                      );
-                    },
-                  ),
-                  Positioned(
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
+                  Container(
+                    height: 200,
+                    margin: const EdgeInsets.all(8.0),
                     child: Material(
                       elevation: 2,
                       child: Container(
@@ -150,10 +130,9 @@ class _OrderPageState extends State<OrderPage> {
                             ),
                             SizedBox(height: 10),
                             Container(
-                              height: 53,
                               width: double.infinity,
                               padding: EdgeInsets.all(12),
-                              margin: EdgeInsets.symmetric(vertical: 10),
+                              // margin: EdgeInsets.symmetric(vertical: 10),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   gradient: LinearGradient(colors: [
@@ -174,6 +153,26 @@ class _OrderPageState extends State<OrderPage> {
                           ],
                         ),
                       ),
+                    ),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: orders.length,
+                      itemBuilder: (context, index) {
+                        return OrderCard(
+                          order: orders[index],
+                          onItemCountChanged: (newCount) {
+                            setState(() {
+                              orders[index].itemCount = newCount;
+                            });
+                          },
+                          onDelete: () {
+                            setState(() {
+                              orders.removeAt(index);
+                            });
+                          },
+                        );
+                      },
                     ),
                   ),
                 ],
